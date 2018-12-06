@@ -18,10 +18,23 @@
 #userData[2] = Doll
 #userData[3] = Amulet
 userData = ['', 0, 0, 0]
+
+# Note: make sure to get project structure from github and replace filepath with your file path
+filePath = "C:\\Users\\jared\\Desktop\\CSUMB\\CST_205\\final\\cst205final\\images\\"
+owl = filePath + "owl.jpeg"
+girlScreaming = filePath + "girl_screaming.jpg"
+holdingKnife = filePath + "holding_knife.jpg"
+hotel = filePath + "hotel.jpg"
+mother = filePath + "mother.jpg"
+normanBate = filePath + "norman_bates.jpg"
+skeleton = filePath + "skeleton.jpg"
+
 def play():
+    blackWhiteHotel = betterBnW(makePicture(hotel))
     #request the name of the user. Used in room 5.
     userData[0] = requestString("Please type in your name.")
     printWelcomeMessage()
+    show(blackWhiteHotel)
     message = 'You are walking through an overgrown driveway towards a shadowy house.\n'
     message += 'Trees and bushes are overgrown, and parts of the two-story mansion seems to have been burned.\n'
     message += 'You walk up to a huge wooden front door, twist the knob, and peer in.\n'
@@ -94,6 +107,8 @@ def houseEntrance():
               break
             else:
               showInformation("Only 'yes' and 'no' are valid commands.")
+
+          show(makePicture(owl))
           message2 = 'You enter through the cobwebbed doorway into a vast entrance hall.\n'
           message2 += 'You walk up the creaky staircase into an upstairs hall lined with doors.\n'
           message2 += 'You open the first door on your left and stare in.\n'
@@ -124,6 +139,7 @@ def roomOne():
             showInformation('You back out of the room and find another door behind you. You open it and stare in.\n')
             return 0
         elif moveDirection == north:
+            show(makePicture(normanBate))
             message = 'You enter into the tiny dark room.\n'
             message += 'There is a rocking chair in the corner.\n'
             message += 'You leave back into the hall, and find another door behind you. You open it and stare in. This room is very bright.\n'
@@ -156,6 +172,7 @@ def roomTwo():
             showInformation('You back out of the room and continue down the hall. You turn left, and open the first door on your right.\n')
             return 0
         elif moveDirection == north:
+            show(makePicture(skeleton))
             message = 'You enter into the room and notice something sticking out from under the bed.\n'
             message += 'It seems to be a doll.\n\n'
             message += 'Would you like to pick it up?'
@@ -220,6 +237,7 @@ def roomThree():
             showInformation('You back out of the room and continue down the hall. You turn right, and open the first door on your left.\n')
             return 0
         elif moveDirection == north:
+            show(makePicture(holdingKnife))
             message = 'You enter into another dark room and see your brother.\n'
             message += "'What are you doing here brother?', you ask. He doesnt seem very happy.\n"
             message += 'You leave the room and continue down the hall. You turn right, and open the first door on your left.\n'
@@ -249,6 +267,7 @@ def roomFour():
             showInformation('You back out of the room and continue down the hall. You go up a spiral staircase and arrive at a red door. You open it.\n')
             return 0
         elif moveDirection == north:
+            show(makePicture(girlScreaming))
             message = 'You enter into another dark room and see your sister.\n'
             message += 'Shes standing in the corner of the room with her head down. She must be sleep walking again.\n'
             message += 'You back out of the room and continue down the hall. You go up a spiral staircase and arrive at a red door. You open it.\n'
@@ -284,6 +303,7 @@ def roomFive():
             showInformation('You back out of the room, run down the stairs and out the front door. You have made it out of the house.\n')
             return 0
         elif moveDirection == north:
+            show(makePicture(mother))
             message = 'You enter into the red room.\n'
             message += 'You see your siblings there sitting at the table.\n'
             #use the name at the end
@@ -348,3 +368,19 @@ def roomFive():
         else:
             showInformation("Only 'north', 'south', 'help', and 'exit' are valid commands.")
         moveDirection = getDirection()
+
+# make an image black and white v2
+def betterBnW(pic):
+   pixels = getPixels(pic)
+
+   for p in pixels:
+     r1 = getRed(p)
+     g1 = getGreen(p)
+     b1 = getBlue(p)
+
+     bw = r1*0.299 + g1*0.587 + b1*0.114
+
+     bwColor = makeColor(bw, bw, bw)
+     setColor(p, bwColor)
+
+   return pic
