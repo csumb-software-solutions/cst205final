@@ -35,9 +35,9 @@ def play():
     userData[0] = requestString("Please type in your name.")
     printWelcomeMessage()
     show(blackWhiteHotel)
-    message = 'You are walking through an overgrown driveway towards a shadowy house.\n'
+    message = 'You are driving in areally bad storm, you see a Motel and next to it a shadowy house.\n'
     message += 'Trees and bushes are overgrown, and parts of the two-story mansion seems to have been burned.\n'
-    message += 'You walk up to a huge wooden front door, twist the knob, and peer in.\n'
+    message += 'You park your car at the Motel and run in to the office.\n'
     showInformation (message)
 
     enterHouse = houseEntrance()
@@ -66,7 +66,7 @@ def getDirection():
 #
 def printWelcomeMessage():
     message = '\n===========================================================\n'
-    message += 'Welcome to Hill House. The house is very happy you came...\n'
+    message += 'Welcome to Bates Motel. Norman and his Mother are very happy you came...\n'
     message += "To move forward enter 'north'\n"
     message += "To go backwards enter 'south'\n"
     message += "For help on how to play enter 'help'\n"
@@ -91,27 +91,28 @@ def houseEntrance():
             return 0
         elif moveDirection == north:
           #Added for Lab 12, able to pick up a crowbar to use in room 5
-          message = 'In the corner of your eye you spot a crowbar.\n'
-          message += 'Would you like to pick it up?\n'
+          message = 'Hi my name is Norman, Norman Bates.\n'
+          message = 'I am glad that you will be staying.\n'
+          message += 'Do you really want to stay?\n'
           showInformation(message)
-          printNow('Hint: The crowbar might be helpful in another room.')
+          printNow('Hint: Staying at the Bates motel might be dangerous.')
           crowbarResponse = ''
           while crowbarResponse != 'yes' or crowbarResponse != 'no':
-            crowbarResponse = requestString("Type 'yes' to pick up crowbar or 'no' to leave the crowbar").lower()
+            crowbarResponse = requestString("Type 'yes' to stay or 'no' to leave the Motel").lower()
             if crowbarResponse == 'yes':
-              showInformation('You pick up the crowbar and continue on your way.\n')
+              showInformation('You grab your room key and proceed to your room.\n')
               userData[1] = 1
               break
             elif crowbarResponse == 'no':
-              showInformation('You leave the crowbar and continue on your way\n')
-              break
+              showInformation('You decide that you are not going to stay at the Bates Motel\n')
+              return 2
             else:
               showInformation("Only 'yes' and 'no' are valid commands.")
 
           show(makePicture(owl))
-          message2 = 'You enter through the cobwebbed doorway into a vast entrance hall.\n'
-          message2 += 'You walk up the creaky staircase into an upstairs hall lined with doors.\n'
-          message2 += 'You open the first door on your left and stare in.\n'
+          message2 = 'You enter your room and it is very still except for the portrait, the eyes keep following you .\n'
+          message2 += 'Norman knocks on the door.\n'
+          message2 += 'You open the door and he stares .\n'
           showInformation(message2)
 
           return 1
@@ -136,13 +137,13 @@ def roomOne():
     moveDirection = getDirection()
     while moveDirection != south or moveDirection != north:
         if moveDirection == south:
-            showInformation('You back out of the room and find another door behind you. You open it and stare in.\n')
+            showInformation('You will now go up too the house on the hill. You enter the house\n')
             return 0
         elif moveDirection == north:
             show(makePicture(normanBate))
-            message = 'You enter into the tiny dark room.\n'
-            message += 'There is a rocking chair in the corner.\n'
-            message += 'You leave back into the hall, and find another door behind you. You open it and stare in. This room is very bright.\n'
+            message = 'You decide to visit the old house. The door is open and as you enter you hear a faint sound of an old women singing. \n'
+            message += 'The room is very dark.\n'
+            message += 'You look back into the hall, and find another door behind you. You open it and stare in.\n'
             showInformation(message)
             return 1
         elif moveDirection == help:
@@ -173,41 +174,41 @@ def roomTwo():
             return 0
         elif moveDirection == north:
             show(makePicture(skeleton))
-            message = 'You enter into the room and notice something sticking out from under the bed.\n'
-            message += 'It seems to be a doll.\n\n'
-            message += 'Would you like to pick it up?'
+            message = 'You enter into the room and on the bed is a skeleton. There is also something shining under the bed.\n'
+            message += 'It is difficult to see what it is.\n\n'
+            message += 'Would you like to lift the covers to see more?'
             showInformation(message)
-            printNow('Hint: The doll might be helpful in another room.')
+           # printNow('Hint: There may be more under the bed.')
 
             dollResponse = ''
 
             while dollResponse != 'yes' or dollResponse != 'no':
-                dollResponse = requestString("Type 'yes' to pick up doll or 'no' to leave the doll").lower()
+                dollResponse = requestString("Type 'yes' to lift the covers or 'no' to not lift the covers").lower()
                 if dollResponse == 'yes':
                   #Added for Lab 12, able to pick up an amulet that you can only get if you pick up the doll. Will be used in room 5
-                  message = '\nAs you pick up the doll, something falls to the ground.\n'
-                  message += 'It looks like an amulet.\n'
+                  message = '\nAs you lift the covers, you see a knife.\n'
+                  message += 'The knife has dried blood stains on it.\n'
                   message += 'This might be useful in another room.\n\n'
                   message += 'Would you like to pick it up?\n'
                   showInformation(message)
-                  printNow('Hint: The amulet might be helpful in another room.')
+                  printNow('Hint: The knife might be helpful in another room.')
                   amuletResponse = ''
                   while amuletResponse != 'yes' or amuletResponse != 'no':
-                    amuletResponse = requestString("Type 'yes' to pick up the amulet or 'no' to leave the amulet").lower()
+                    amuletResponse = requestString("Type 'yes' to pick up the knife or 'no' to leave the knife").lower()
                     if amuletResponse == 'yes':
-                      showInformation('You pick up the amulet and put it around your neck and continue on your way.\n')
+                      showInformation('You pick up the knife and continue on your way.\n')
                       userData[3] = 1
                       break
                     elif amuletResponse == 'no':
-                      showInformation('You leave the amulet and continue on your way\n')
+                      showInformation('You leave the knife and continue on your way\n')
                       break
                     else:
                       showInformation("Only 'yes' and 'no' are valid commands.")
-                  showInformation('You pick up the doll and continue down the hall. You turn left, and open the first door on your right.\n')
+                  showInformation('You continue down the hall. You turn left, and open the first door on your right.\n')
                   userData[2] = 1
                   break
                 elif dollResponse == 'no':
-                    showInformation('You leave doll under the bed, leave the room and continue down the hall. You turn left, and open the first door on your right.\n')
+                    showInformation('You leave the room and continue down the hall. You turn left, and open the first door on your right.\n')
                     break
                 else:
                     showInformation("Only 'yes' and 'no' are valid commands.")
@@ -234,12 +235,12 @@ def roomThree():
     moveDirection = getDirection()
     while moveDirection != south or moveDirection != north:
         if moveDirection == south:
-            showInformation('You back out of the room and continue down the hall. You turn right, and open the first door on your left.\n')
+            showInformation('You back out of the room and continue down the hall.\n')
             return 0
         elif moveDirection == north:
             show(makePicture(holdingKnife))
-            message = 'You enter into another dark room and see your brother.\n'
-            message += "'What are you doing here brother?', you ask. He doesnt seem very happy.\n"
+            message = 'You enter into another dark room and see an old lady in a rocking chair.\n'
+            message += "'What are you doing here?', she asks, She doesnt seem very happy.\n"
             message += 'You leave the room and continue down the hall. You turn right, and open the first door on your left.\n'
             showInformation(message)
             return 1
@@ -264,19 +265,19 @@ def roomFour():
     moveDirection = getDirection()
     while moveDirection != south or moveDirection != north:
         if moveDirection == south:
-            showInformation('You back out of the room and continue down the hall. You go up a spiral staircase and arrive at a red door. You open it.\n')
+            showInformation('Your being being chased by Normans mother with a knife. You run down towards Motel.\n')
             return 0
         elif moveDirection == north:
             show(makePicture(girlScreaming))
-            message = 'You enter into another dark room and see your sister.\n'
-            message += 'Shes standing in the corner of the room with her head down. She must be sleep walking again.\n'
-            message += 'You back out of the room and continue down the hall. You go up a spiral staircase and arrive at a red door. You open it.\n'
+            message = ' Normans mother is chasing you with a knife. You run down the hill back to your room.\n'
+            message += 'Norman is standing outside of the room with a smile. He says you should not go up to the house.\n'
+            message += 'You run and Norman is following you.\n'
             showInformation(message)
             return 1
         elif moveDirection == help:
             printWelcomeMessage()
         elif moveDirection == exit:
-            showInformation('You turn back and sprint out of the house. A woman in the attic window wacthed you leave.\n')
+            showInformation('You turn back and run. A woman in the attic window wacthed you leave.\n')
             return 2
         else:
             showInformation("Only 'north', 'south', 'help', and 'exit' are valid commands.")
@@ -300,41 +301,41 @@ def roomFive():
     moveDirection = getDirection()
     while moveDirection != south or moveDirection != north:
         if moveDirection == south:
-            showInformation('You back out of the room, run down the stairs and out the front door. You have made it out of the house.\n')
+            showInformation('You run, screaming for help.\n')
             return 0
         elif moveDirection == north:
             show(makePicture(mother))
-            message = 'You enter into the red room.\n'
-            message += 'You see your siblings there sitting at the table.\n'
+            message = 'You go back into your motel room and lock the door.\n'
+            message += 'You see the eyes in portrait follow you around the room..\n'
             #use the name at the end
-            message += '\nThey look to you and say \n"' + userName + ' come play with us."\n\n'
+            message += '\nyou hear Normans voice say \n"'  + userName +  ' mother is very angry."\n\n'
             if hasDoll == 1:
-                message += 'You take your seat and notice they all have dolls sitting in their laps.\n'
-                message += 'You all play with your dolls as the ghost of your mother watches on with a smile.\n\n'
+                message += 'You pick up the phone to call the police but the phone is dead.\n'
+                message += 'You can hear the thunder from the storm .\n\n'
 
                 #Add alternate endings
                 #hidden room, need crowbar to enter
-                message +='Your mother steps aside and you notice a door with wooden planks\n\n'
+                message +='You look out the window and see nothing but darkness. \n\n'
 
                 if hasCrowbar == 1:
-                  message += 'Would you like to use the crowbar you picked up earlier?\n'
+                  message += 'Would you like to hide?\n'
                   showInformation(message)
-                  printNow('Hint: Selecting yes allows you to go to another room. Who knows what you will find.')
+                  printNow('Hint: Selecting yes means you may never be found.')
                   useCrowbar = ''
                   while useCrowbar != 'yes' or useCrowbar != 'no':
-                    useCrowbar = requestString("Type 'yes' to use crowbar, or 'no' to not use a crowbar").lower()
+                    useCrowbar = requestString("Type 'yes' to hide, or 'no' to open the door").lower()
                     if useCrowbar == 'yes':
-                      message2 = 'You remove the planks and pry open the door to reveal your father\'s pocket watch, a family heirloom. \n'
-                      message2 += 'You enter the room. Your mom appears in front of you.\n'
-                      message2 += 'She looks upset!'
+                      message2 = 'You close your eyes and hope it is just a dream. \n'
+                      message2 += 'You sit on the bed trying to understand what is happening.\n'
+                      message2 += 'you are very tired and upset!'
                       showInformation(message2)
                       if hasAmulet == 1:
                         #Win: Must have amulet to win
-                        message3 = 'She is about to scream, when she sees the amulet around your neck.\n'
-                        message3 += 'She stops and returns to her relaxed state.\n'
-                        message3 += 'Gives you a hug, gives you your father\'s watch.\n'
-                        message3 += 'And walks you out of the house to safety.\n'
-                        message3 += 'You leave happy to have seen your family one last time.\n\n\n'
+                        message3 = 'you scream, when you see a shadow in the window .\n'
+                        message3 += 'You try to decide if you should look out the window or hide.\n'
+                        message3 += 'In a soft voice you hear Norman ask you if you are alright.\n'
+                        message3 += 'Have you just imagined all of this..\n'
+                        message3 += 'You respond to Norman and tell him you are fine.\n\n\n'
                         message3 += '___END___'
                         showInformation(message3)
                         break
@@ -342,20 +343,20 @@ def roomFive():
                         #Lose: Didn't pick up amulet
                         message3 = 'She opens her mouth and emits a blood curdling scream.\n'
                         message3 += 'You try to run, but it is too late.\n'
-                        message3 += 'Your siblings sorround you, with an evil expression in their eyes.\n'
+                        message3 += 'You see an old lady, with an evil expression in her eyes.\n'
                         message3 += 'The room grows dark, and your hopes of ever getting out alive ...\n\n'
                         message3 += '___END___'
                         break
                     else:
-                      showInformation('You stay playing with your siblings, staying stuck for eternety.')
+                      showInformation('You are stuck at the Bates Motel for eternety.')
                       break
 
                 else:
-                  message += 'You should have picked up the crowbar\n'
-                  message += 'You stay playing with your siblings, staying stuck for eternety.'
+                  message += 'You should not have picked up the knife. \n'
+                  message += 'You wake up and relize it is just a dream.'
                   showInformation(message)
             else:
-                message += "You sit with your siblings at the table. You notice they all have their dolls. You don't have yours..."
+                message += "You see Norman at the table. You notice he has a smile on his face..."
                 message += 'Suddenly the door slams and the lights go out. There is nothing but silence.\n\n\n'
                 message += '___END___'
                 showInformation(message)
